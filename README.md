@@ -1,99 +1,268 @@
-# SkyGlass Weather Dashboard
+# 🌦️ Weather Application
 
-A premium, modern weather dashboard that features Apple + Microsoft Fluent + Glassmorphic aesthetics. Built using React + Vite on the frontend and Python Flask on the backend, integrated with Open-Meteo API services.
-
-## Features
-- **Dynamic Backdrop Layering**: Fullscreen scenery matching weather conditions (Sunny, Rain, Cloudy, Snow, Thunderstorm, Fog, Night).
-- **Curated Cityscapes**: Automatically displays unique cityscape photography backgrounds for popular cities (London, Tokyo, Paris, Rome, Sydney, Cairo, Delhi, Chennai, Bangalore, Singapore, Dubai, etc.).
-- **Calculated Sun Trajectory Curve**: Dynamically positions the sun icon on a dashed SVG path based on local sunrise/sunset coordinates.
-- **Air Quality Gauge**: Visualizes US AQI levels and PM2.5 concentrations in a premium circular SVG meter.
-- **Count-Up Number Animations**: Count animations on temperature and AQI readouts.
-- **Dashed layout section dividers** matching premium mockup grids.
-- **Responsive design** optimized for screens above 1440px (Desktop), 1200px (Laptop), 768px (Tablet), and Mobile stacks.
+A modern, responsive weather application built using **React + Vite** and **Flask**, powered by the **Open-Meteo API**. The application provides real-time weather information and forecasts for cities worldwide with a dynamic weather-based user interface.
 
 ---
 
-## Directory Structure
+## 🚀 Features
+
+- 🔍 Search weather by city (Worldwide)
+- 🌡️ Current temperature
+- 💧 Humidity
+- 🌬️ Wind speed
+- ☁️ Weather condition with icons
+- 📅 Multi-day weather forecast
+- 🎨 Dynamic animated background based on live weather
+- 💾 Last searched city saved using Local Storage
+- ⚠️ Error handling for invalid cities and API failures
+- 📱 Responsive design for desktop, tablet, and mobile
+
+---
+
+# 🛠️ Tech Stack
+
+### Frontend
+- React
+- Vite
+- Axios
+- CSS
+
+### Backend
+- Flask
+- Flask-CORS
+- Requests
+
+### Weather API
+- Open-Meteo Forecast API
+- Open-Meteo Geocoding API
+
+---
+
+# 📂 Project Structure
+
 ```
-weather/
-├── frontend/             # Vite + React (Tailwind CSS, Framer Motion)
+weather-app/
+
+├── frontend/
 │   ├── src/
-│   │   ├── components/   # Modular glass UI units (AQI, Sunrise, Scenery, timeline)
-│   │   ├── services/     # Axios client configuration
-│   │   └── utils/        # Weather code translation maps
-│   ├── tailwind.config.js
-│   └── package.json
-└── backend/              # Python Flask API
-    ├── app.py            # API entry point & CORS
-    ├── weather.py        # Open-Meteo forecast and AQI fetches
-    └── requirements.txt  # Dependency listings (including Gunicorn)
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.js
+│
+├── backend/
+│   ├── app.py
+│   ├── weather.py
+│   ├── requirements.txt
+│   └── .env (optional)
+│
+└── README.md
 ```
 
 ---
 
-## Local Development Setup
+# ⚙️ Installation & Local Setup
 
-### 1. Backend (Flask)
-Go to the `backend/` directory:
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/weather-app.git
+
+cd weather-app
+```
+
+---
+
+## 2. Backend Setup (Flask)
+
+Navigate to backend:
+
 ```bash
 cd backend
 ```
-Create a virtual environment (optional but recommended):
+
+Create virtual environment
+
+### Windows
+
 ```bash
 python -m venv venv
-# On Windows
+
 venv\Scripts\activate
-# On macOS/Linux
+```
+
+### Linux / macOS
+
+```bash
+python3 -m venv venv
+
 source venv/bin/activate
 ```
-Install dependencies:
+
+Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
-Run the local server:
+
+Run Flask server
+
 ```bash
 python app.py
 ```
-*The local backend API runs on `http://127.0.0.1:5000/weather?city=London`.*
 
-### 2. Frontend (Vite)
-Go to the `frontend/` directory:
-```bash
-cd frontend
+Backend runs at
+
 ```
-Install packages:
-```bash
-npm install
+http://localhost:5000
 ```
-Start the development server:
-```bash
-npm run dev
-```
-*The local Vite development client runs on `http://localhost:5173/`.*
 
 ---
 
-## Deployment Process
+## 3. Frontend Setup (React + Vite)
 
-### Frontend Deployment (Vercel)
-1. Commit and push the code to your GitHub repository.
-2. Log into your [Vercel Dashboard](https://vercel.com/) and click **Add New Project**.
-3. Select your repository.
-4. Set the following parameters:
-   - **Framework Preset**: `Vite`
-   - **Root Directory**: `frontend`
-5. In **Environment Variables**, add:
-   - **Key**: `VITE_API_URL`
-   - **Value**: `https://your-backend-render-app.onrender.com` (Your deployed Render backend URL)
-6. Click **Deploy**.
+Open another terminal
 
-### Backend Deployment (Render)
-1. Log into your [Render Dashboard](https://render.com/) and click **New > Web Service**.
-2. Connect your GitHub repository.
-3. Set the following parameters:
-   - **Name**: `weather-backend`
-   - **Language**: `Python`
-   - **Root Directory**: `backend`
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `gunicorn app:app`
-4. Click **Create Web Service**.
+```bash
+cd frontend
+```
+
+Install packages
+
+```bash
+npm install
+```
+
+Start development server
+
+```bash
+npm run dev
+```
+
+Frontend runs at
+
+```
+http://localhost:5173
+```
+
+---
+
+# 🌐 Environment Variables
+
+Create a `.env` file inside the frontend directory.
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+For production:
+
+```env
+VITE_API_URL=https://your-render-backend.onrender.com
+```
+
+---
+
+# 🚀 Build for Production
+
+Frontend
+
+```bash
+npm run build
+```
+
+Backend
+
+```bash
+gunicorn app:app
+```
+
+---
+
+# 📦 Deployment
+
+### Frontend
+
+Deploy on **Vercel**
+
+### Backend
+
+Deploy on **Render**
+
+---
+
+# 📌 Assumptions Made
+
+- Internet connection is available to fetch live weather data.
+- Open-Meteo API services are online and accessible.
+- City names entered by users are valid and supported by the Open-Meteo Geocoding API.
+- Users allow their browser to store Local Storage data for remembering the last searched city.
+- Weather information depends on the accuracy of the Open-Meteo data source.
+
+---
+
+# ⚠️ Known Limitations
+
+- Weather data availability depends on the Open-Meteo API.
+- Search is based on city names and may return the closest matching location for ambiguous names.
+- The free hosting tier for the Flask backend (Render) may introduce a short delay if the service has been idle.
+- The application currently supports weather search by city only and does not include user authentication or favorites.
+
+---
+
+# 🤖 AI Usage Disclosure
+
+## AI Tools Used
+
+The following AI tools were used during the development process:
+
+- ChatGPT (OpenAI)
+- Cursor AI
+
+---
+
+## Tasks Assisted by AI
+
+AI was used to assist with:
+
+- Project planning and architecture
+- React component organization
+- Flask backend structure
+- API integration guidance for Open-Meteo
+- UI/UX design suggestions
+- Dynamic weather background ideas
+- Error handling recommendations
+- README documentation preparation
+
+---
+
+## Code Written Independently
+
+The following work was implemented and customized independently:
+
+- React application setup and component integration
+- Flask API implementation and endpoint configuration
+- Frontend-to-backend communication
+- Weather data rendering logic
+- Responsive UI adjustments
+- Local storage implementation
+- Project deployment configuration using Vercel and Render
+- Debugging, testing, and final integration
+
+---
+
+## Independent Technical Decision
+
+One independent technical decision was choosing the deployment architecture:
+
+- **Frontend:** Vercel
+- **Backend:** Render
+
+This approach provides fast static hosting for the React application while allowing the Flask backend to run as a dedicated web service, resulting in a clean separation between frontend and backend with straightforward deployment.
+
+---
+
+# 📄 License
+
+This project was developed as a **Minor Project** for educational purposes.
+
+---
