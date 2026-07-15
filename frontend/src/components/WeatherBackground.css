@@ -1,0 +1,485 @@
+/* Base Viewport */
+.weather-bg-viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: hidden;
+  transition: background 1.5s ease-in-out;
+}
+
+.weather-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgba(15, 23, 42, 0.15); /* Sleek backdrop adjustment */
+}
+
+/* Gradients for Conditions */
+.weather-bg-viewport.sunny {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
+}
+
+.weather-bg-viewport.partly-cloudy {
+  background: linear-gradient(135deg, #38bdf8 0%, #0f766e 100%);
+}
+
+.weather-bg-viewport.cloudy {
+  background: linear-gradient(135deg, #64748b 0%, #334155 100%);
+}
+
+.weather-bg-viewport.rain {
+  background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
+}
+
+.weather-bg-viewport.thunderstorm {
+  background: linear-gradient(135deg, #1e293b 0%, #020617 100%);
+}
+
+.weather-bg-viewport.snow {
+  background: linear-gradient(135deg, #cbd5e1 0%, #64748b 100%);
+}
+
+.weather-bg-viewport.fog {
+  background: linear-gradient(135deg, #94a3b8 0%, #475569 100%);
+}
+
+.weather-bg-viewport.night {
+  background: linear-gradient(135deg, #090d16 0%, #020408 100%);
+}
+
+/* 1. Sunny - Sun Glow */
+.sun-glow {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(253, 224, 71, 0.6) 0%, rgba(253, 224, 71, 0.15) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(10px);
+  animation: sunPulse 6s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+/* Clouds (Shared by Sunny and Partly Cloudy) */
+.floating-clouds-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 100px;
+  filter: blur(6px);
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+}
+
+.cloud-1 {
+  width: 320px;
+  height: 90px;
+  top: 15%;
+  left: -350px;
+  animation: floatCloud 50s linear infinite;
+}
+.cloud-1::before {
+  width: 130px;
+  height: 130px;
+  top: -65px;
+  left: 45px;
+}
+.cloud-1::after {
+  width: 100px;
+  height: 100px;
+  top: -45px;
+  left: 150px;
+}
+
+.cloud-2 {
+  width: 220px;
+  height: 65px;
+  top: 32%;
+  left: -250px;
+  opacity: 0.65;
+  animation: floatCloud 36s linear infinite;
+  animation-delay: 12s;
+}
+.cloud-2::before {
+  width: 90px;
+  height: 90px;
+  top: -45px;
+  left: 30px;
+}
+.cloud-2::after {
+  width: 70px;
+  height: 70px;
+  top: -30px;
+  left: 100px;
+}
+
+.cloud-3 {
+  width: 260px;
+  height: 75px;
+  top: 8%;
+  left: -300px;
+  opacity: 0.45;
+  animation: floatCloud 62s linear infinite;
+  animation-delay: 22s;
+}
+.cloud-3::before {
+  width: 110px;
+  height: 110px;
+  top: -55px;
+  left: 35px;
+}
+.cloud-3::after {
+  width: 80px;
+  height: 80px;
+  top: -35px;
+  left: 120px;
+}
+
+@keyframes floatCloud {
+  0% { left: -350px; }
+  100% { left: 105vw; }
+}
+
+/* 2. Cloudy - Dense moving clouds */
+.dense-clouds-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.04);
+  pointer-events: none;
+}
+
+.dense-cloud {
+  position: absolute;
+  background: rgba(226, 232, 240, 0.22);
+  border-radius: 120px;
+  filter: blur(10px);
+}
+
+.dense-cloud::before,
+.dense-cloud::after {
+  content: '';
+  position: absolute;
+  background: rgba(226, 232, 240, 0.22);
+  border-radius: 50%;
+}
+
+.d-cloud-1 {
+  width: 550px;
+  height: 180px;
+  top: 5%;
+  left: -600px;
+  animation: floatCloud 75s linear infinite;
+}
+.d-cloud-1::before {
+  width: 240px;
+  height: 240px;
+  top: -110px;
+  left: 70px;
+}
+.d-cloud-1::after {
+  width: 180px;
+  height: 180px;
+  top: -80px;
+  left: 270px;
+}
+
+.d-cloud-2 {
+  width: 440px;
+  height: 140px;
+  top: 25%;
+  left: -500px;
+  opacity: 0.85;
+  animation: floatCloud 55s linear infinite;
+  animation-delay: 8s;
+}
+.d-cloud-2::before {
+  width: 190px;
+  height: 190px;
+  top: -90px;
+  left: 50px;
+}
+.d-cloud-2::after {
+  width: 140px;
+  height: 140px;
+  top: -70px;
+  left: 200px;
+}
+
+.d-cloud-3 {
+  width: 500px;
+  height: 160px;
+  top: 45%;
+  left: -550px;
+  opacity: 0.6;
+  animation: floatCloud 90s linear infinite;
+  animation-delay: 20s;
+}
+.d-cloud-3::before {
+  width: 210px;
+  height: 210px;
+  top: -100px;
+  left: 60px;
+}
+.d-cloud-3::after {
+  width: 150px;
+  height: 150px;
+  top: -75px;
+  left: 230px;
+}
+
+/* 3. Rain - Animated rainfall */
+.rain-particles-container {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  pointer-events: none;
+}
+
+.rain-drop {
+  position: absolute;
+  width: 1px;
+  height: 25px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.45));
+  animation: fallRain linear infinite;
+}
+
+@keyframes fallRain {
+  0% {
+    transform: translateY(-25px) rotate(12deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(115vh) rotate(12deg);
+    opacity: 0;
+  }
+}
+
+.fog-overlay-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 80%);
+  pointer-events: none;
+}
+
+/* 4. Thunderstorm - Lightning Flash */
+.lightning-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  opacity: 0;
+  pointer-events: none;
+  animation: lightningFlash 8s infinite ease-out;
+}
+
+@keyframes lightningFlash {
+  0%, 93%, 97%, 100% {
+    opacity: 0;
+  }
+  94% {
+    opacity: 0.75;
+  }
+  95% {
+    opacity: 0.15;
+  }
+  96% {
+    opacity: 0.85;
+  }
+}
+
+/* 5. Snow - Animated snowfall */
+.snow-particles-container {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  pointer-events: none;
+}
+
+.snow-flake {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #ffffff;
+  border-radius: 50%;
+  filter: blur(0.3px);
+  animation: fallSnow linear infinite;
+}
+
+@keyframes fallSnow {
+  0% {
+    transform: translateY(-10px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(50vh) translateX(30px) rotate(180deg);
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(115vh) translateX(-30px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 6. Fog - Misty Fog Layers */
+.fog-layers-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.fog-layer {
+  position: absolute;
+  width: 200%;
+  height: 35%;
+  background: linear-gradient(to bottom, rgba(226, 232, 240, 0.25) 0%, rgba(226, 232, 240, 0.03) 100%);
+  filter: blur(12px);
+}
+
+.fog-layer-1 {
+  bottom: 0;
+  left: -50%;
+  animation: driftFog 40s linear infinite alternate;
+}
+
+.fog-layer-2 {
+  bottom: 12%;
+  left: -20%;
+  animation: driftFog 50s linear infinite alternate;
+  animation-delay: -7s;
+}
+
+.fog-layer-3 {
+  bottom: 25%;
+  left: -60%;
+  opacity: 0.5;
+  animation: driftFog 60s linear infinite alternate;
+}
+
+@keyframes driftFog {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(20%); }
+}
+
+/* 7. Night - Crescent Moon and Twinkling Stars */
+.moon-glow {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, rgba(254, 243, 199, 0.7) 0%, rgba(254, 243, 199, 0.15) 55%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(6px);
+  animation: moonPulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.moon-glow::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 13px -13px 0 0 #fef3c7;
+}
+
+@keyframes moonPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.twinkling-stars-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 1.5px;
+  height: 1.5px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 3px #fff;
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.3);
+  }
+}

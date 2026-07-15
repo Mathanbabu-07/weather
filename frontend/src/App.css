@@ -1,0 +1,15 @@
+/* Base settings for viewport layout */
+main {
+  scrollbar-gutter: stable;
+  height: calc(100vh - 48px);
+}
+
+/* Hide scrollbar for layout wrappers while supporting scrolling */
+main::-webkit-scrollbar {
+  display: none;
+}
+
+main {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

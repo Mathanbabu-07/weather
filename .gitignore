@@ -1,0 +1,29 @@
+# Node / Frontend dependencies & outputs
+node_modules/
+dist/
+dist-ssr/
+*.local
+.eslintcache
+.oxlintrc.json
+
+# Python / Backend caches & environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# OS Metadata files
+.DS_Store
+Thumbs.db
+
+# Editor configurations
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
