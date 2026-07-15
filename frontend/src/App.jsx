@@ -46,7 +46,7 @@ function App() {
   const weatherCategory = weather ? mapWeatherCode(weather.weatherCode, weather.isDay) : 'Sunny';
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden flex items-center justify-center p-6 select-none">
+    <div className="relative w-screen min-h-screen lg:h-screen lg:overflow-hidden flex items-center justify-center p-3 sm:p-6 select-none">
       {/* Condition-based landscape background layering */}
       <Background condition={weatherCategory} />
       

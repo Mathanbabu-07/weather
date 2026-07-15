@@ -1,15 +1,32 @@
-/* Base settings for viewport layout */
-main {
-  scrollbar-gutter: stable;
-  height: calc(100vh - 48px);
+/* Desktop view: Lock viewport and scroll inner content */
+@media (min-width: 1024px) {
+  body {
+    overflow: hidden !important;
+  }
+  main {
+    scrollbar-gutter: stable;
+    height: calc(100vh - 48px);
+    overflow-y: auto;
+  }
+  /* Hide scrollbar for main dashboard wrapper on desktop */
+  main::-webkit-scrollbar {
+    display: none;
+  }
+  main {
+    -ms-overflow-style: none;  /* IE/Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
 
-/* Hide scrollbar for layout wrappers while supporting scrolling */
-main::-webkit-scrollbar {
-  display: none;
-}
-
-main {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+/* Mobile & Tablet views: Smooth natural body scrolling */
+@media (max-width: 1023px) {
+  body {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+  main {
+    height: auto !important;
+    overflow: visible !important;
+    padding-bottom: 24px;
+  }
 }

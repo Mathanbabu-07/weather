@@ -79,7 +79,7 @@ const WeatherCard = ({ weatherData }) => {
       initial={{ opacity: 0, y: 20, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative w-full h-[430px] rounded-[24px] overflow-hidden bg-white/8 border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.25)] flex flex-col justify-between p-8 text-white group"
+      className="relative w-full h-[340px] sm:h-[430px] rounded-[24px] overflow-hidden bg-white/8 border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.25)] flex flex-col justify-between p-6 sm:p-8 text-white group"
     >
       {/* Background cityscape with hover scale zoom. Cleared alt string and added error fallback */}
       <img
@@ -96,10 +96,10 @@ const WeatherCard = ({ weatherData }) => {
       {/* TOP ROW: Location & Weather Badge */}
       <div className="flex justify-between items-start w-full">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight drop-shadow-md">
+          <h2 className="text-xl sm:text-3xl font-bold tracking-tight drop-shadow-md">
             {city}, {country}
           </h2>
-          <p className="text-sm font-medium text-white/70 mt-1 drop-shadow-sm">
+          <p className="text-xs sm:text-sm font-medium text-white/70 mt-1 drop-shadow-sm">
             {formatDate(currentTime)}
           </p>
         </div>
@@ -108,7 +108,7 @@ const WeatherCard = ({ weatherData }) => {
         <motion.div 
           animate={{ y: [0, -4, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="flex items-center gap-2 bg-black/30 backdrop-blur-md px-4 h-9 rounded-full border border-white/10 shadow-lg text-sm font-semibold"
+          className="flex items-center gap-1.5 sm:gap-2 bg-black/30 backdrop-blur-md px-3 sm:px-4 h-8 sm:h-9 rounded-full border border-white/10 shadow-lg text-xs sm:text-sm font-semibold"
         >
           <span>{getBadgeEmoji(category)}</span>
           <span>{category}</span>
@@ -117,21 +117,21 @@ const WeatherCard = ({ weatherData }) => {
 
       {/* BOTTOM ROW: Temperature & Condition details */}
       <div className="flex flex-col items-start w-full mt-auto">
-        <div className="flex items-baseline gap-2">
-          {/* Huge temperature font size 96px */}
-          <span className="text-[96px] font-bold leading-none tracking-tighter drop-shadow-lg">
+        <div className="flex items-baseline gap-1 sm:gap-2">
+          {/* Huge temperature font size 96px responsive */}
+          <span className="text-[76px] sm:text-[96px] font-bold leading-none tracking-tighter drop-shadow-lg">
             <AnimatedNumber value={Math.round(temperature)} />
           </span>
-          <span className="text-4xl font-semibold -translate-y-9">°c</span>
+          <span className="text-2xl sm:text-4xl font-semibold -translate-y-6 sm:-translate-y-9">°c</span>
         </div>
         
-        {/* Description font size 32px */}
-        <h3 className="text-[32px] font-bold leading-tight mt-1 drop-shadow-md text-white/95">
+        {/* Description font size 32px responsive */}
+        <h3 className="text-[24px] sm:text-[32px] font-bold leading-tight mt-1 drop-shadow-md text-white/95">
           {description}
         </h3>
 
         {/* High/Low & Feels like */}
-        <div className="flex items-center gap-4 mt-3 text-sm font-medium text-white/80 drop-shadow">
+        <div className="flex items-center gap-3 sm:gap-4 mt-2 sm:mt-3 text-xs sm:text-sm font-medium text-white/80 drop-shadow">
           <span className="flex items-center gap-1">
             <span className="text-accent font-bold">↑</span> {tempMax}°
             <span className="text-white/40 ml-1">|</span>
