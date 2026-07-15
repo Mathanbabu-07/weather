@@ -92,6 +92,12 @@ const WeatherCard = ({ weatherData }) => {
       {/* Dark overlay & bottom gradient overlay */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/20 to-black/30"></div>
 
+      {/* SECTION 1: Weather Pro Header & Search */}
+      <div className="section-header">
+        <h1 className="header-title">Weather Pro</h1>
+        <SearchBar onSearch={onSearch} isLoading={isLoading} />
+      </div>
+
       {/* TOP ROW: Location & Weather Badge */}
       <div className="flex justify-between items-start w-full">
         <div>
